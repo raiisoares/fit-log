@@ -1,21 +1,15 @@
 package com.fit_log
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import android.content.Intent
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -28,7 +22,6 @@ import com.fit_log.pages.DashboardPage
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
-
     val navItemList = listOf(
         NavItem("Add", ImageVector.vectorResource(R.drawable.ic_add_black_24dp)),
         NavItem("Dashboard", ImageVector.vectorResource(R.drawable.ic_dashboard_black_24dp)),
@@ -39,6 +32,12 @@ fun MainScreen(modifier: Modifier = Modifier) {
         mutableIntStateOf(1)
     }
 
+    // Contexto da atividade atual
+    val context = LocalContext.current
+
+    // Estado para armazenar as anotações
+    var annotationsList by remember { mutableStateOf(listOf<String>()) }
+
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         val navController = rememberNavController()
         Column(modifier = Modifier.padding(innerPadding)) {
@@ -48,16 +47,33 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier.weight(1f)
             ) {
                 composable("Dashboard") {
-                    DashboardPage()
+                    DashboardPage(annotations = annotationsList) // Passa a lista de anotações
                 }
 
                 composable("Add") {
-                    AddPage()
+                    AddPage(onAddAnnotation = { annotation ->
+                        annotationsList = annotationsList + annotation // Adiciona a anotação à lista
+                        navController.navigate("Dashboard") // Navega para o Dashboard após adicionar
+                    })
                 }
 
                 composable("About") {
                     AboutPage()
                 }
+            }
+
+            // Botão para abrir a tela MariaEduardaInfoActivity
+            Button(
+                onClick = {
+                    // Inicia a MariaEduardaInfoActivity
+                    val intent = Intent(context, MariaEduardaInfoActivity::class.java)
+                    context.startActivity(intent)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                Text("Abrir Informações Maria Eduarda")
             }
 
             BottomAppBar(actions = {
