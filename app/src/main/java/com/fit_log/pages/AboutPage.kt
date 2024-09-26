@@ -1,31 +1,39 @@
 package com.fit_log.pages
 
-import androidx.compose.foundation.background
+import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
+import com.fit_log.MariaEduardaInfoActivity
 
 @Composable
 fun AboutPage(modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(Color(0xFF1976D2)),
+        modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
-            text = "About",
-            fontSize = 40.sp,
-            fontWeight = FontWeight.SemiBold,
-            color = Color.White
-        )
+        Button(
+            onClick = {
+                val intent = Intent(context, MariaEduardaInfoActivity::class.java)
+                context.startActivity(intent)
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Text("Abrir Informações Maria Eduarda")
+        }
     }
 }
