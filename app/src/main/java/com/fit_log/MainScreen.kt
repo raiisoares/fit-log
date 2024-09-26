@@ -56,7 +56,7 @@ fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = v
                     AddPage(onAddNote = { title, content, subject ->
                         notesViewModel.addNote(title, content, subject)
                         navController.navigate("Dashboard")
-                    }, notesViewModel = notesViewModel)
+                    })
                 }
 
                 composable("About") {
