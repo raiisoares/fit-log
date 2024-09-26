@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">fit-log</string>
+    <string name="title_activity_maria_eduarda_info">Informações de Maria Eduarda</string>
+    <string name="info_name">Nome</string>
+    <string name="info_age">Idade</string>
+    <string name="info_course">Curso</string>
+    <string name="info_university">Faculdade</string>
+    <string name="user_name">Maria Eduarda</string>
+    <string name="user_age">21 anos</string>
+    <string name="user_course">Ciência da Computação</string>
+    <string name="user_university">UNICAP</string>
+</resources>
