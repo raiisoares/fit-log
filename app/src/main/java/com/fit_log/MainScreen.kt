@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -21,7 +22,7 @@ import com.fit_log.pages.AddPage
 import com.fit_log.pages.DashboardPage
 
 @Composable
-fun MainScreen(modifier: Modifier = Modifier) {
+fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = viewModel()) {
     val navItemList = listOf(
         NavItem("Add", ImageVector.vectorResource(R.drawable.ic_add_black_24dp)),
         NavItem("Dashboard", ImageVector.vectorResource(R.drawable.ic_dashboard_black_24dp)),
@@ -32,11 +33,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
         mutableIntStateOf(1)
     }
 
-    // Contexto da atividade atual
     val context = LocalContext.current
-
-    // Estado para armazenar as anotações
-    var annotationsList by remember { mutableStateOf(listOf<String>()) }
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         val navController = rememberNavController()
@@ -47,13 +44,15 @@ fun MainScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier.weight(1f)
             ) {
                 composable("Dashboard") {
-                    DashboardPage(annotations = annotationsList) // Passa a lista de anotações
+                    // Passa a lista de anotações do ViewModel para o Dashboard
+                    DashboardPage(annotations = notesViewModel.annotationsList)
                 }
 
                 composable("Add") {
+                    // Adiciona a anotação usando o ViewModel e navega de volta para o Dashboard
                     AddPage(onAddAnnotation = { annotation ->
-                        annotationsList = annotationsList + annotation // Adiciona a anotação à lista
-                        navController.navigate("Dashboard") // Navega para o Dashboard após adicionar
+                        notesViewModel.addAnnotation(annotation)
+                        navController.navigate("Dashboard")
                     })
                 }
 
@@ -65,7 +64,6 @@ fun MainScreen(modifier: Modifier = Modifier) {
             // Botão para abrir a tela MariaEduardaInfoActivity
             Button(
                 onClick = {
-                    // Inicia a MariaEduardaInfoActivity
                     val intent = Intent(context, MariaEduardaInfoActivity::class.java)
                     context.startActivity(intent)
                 },
@@ -106,3 +104,4 @@ fun MainScreen(modifier: Modifier = Modifier) {
         }
     }
 }
+
