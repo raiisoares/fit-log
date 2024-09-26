@@ -1,5 +1,6 @@
 package com.fit_log.pages
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,10 +19,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.fit_log.model.Notes
 
 @Composable
-fun DashboardPage(annotations: List<Notes>) {
+fun DashboardPage(annotations: List<Notes>, navController: NavController) {
     Column {
         Text(
             text = "Dashboard de notas",
@@ -35,18 +37,21 @@ fun DashboardPage(annotations: List<Notes>) {
 
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             items(annotations) { note ->
-                NoteCard(note)
+                NoteCard(note, navController)
             }
         }
     }
 }
 
 @Composable
-fun NoteCard(note: Notes) {
+fun NoteCard(note: Notes, navController: NavController) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(16.dp)
+            .clickable {
+                navController.navigate("NoteDetail/${note.title}")
+            },
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {

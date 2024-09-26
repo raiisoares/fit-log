@@ -27,6 +27,7 @@ import com.fit_log.model.NotesViewModel
 import com.fit_log.pages.AboutPage
 import com.fit_log.pages.AddPage
 import com.fit_log.pages.DashboardPage
+import com.fit_log.pages.NoteDetailPage
 
 @Composable
 fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = viewModel()) {
@@ -42,6 +43,7 @@ fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = v
 
     Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
         val navController = rememberNavController()
+
         Column(modifier = Modifier.padding(innerPadding)) {
             NavHost(
                 navController = navController,
@@ -49,7 +51,7 @@ fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = v
                 modifier = Modifier.weight(1f)
             ) {
                 composable("Dashboard") {
-                    DashboardPage(annotations = notesViewModel.notesList.value)
+                    DashboardPage(annotations = notesViewModel.notesList.value, navController = navController)
                 }
 
                 composable("Add") {
@@ -61,6 +63,14 @@ fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = v
 
                 composable("About") {
                     AboutPage()
+                }
+
+                composable("NoteDetail/{noteTitle}") { backStackEntry ->
+                    val noteTitle = backStackEntry.arguments?.getString("noteTitle")
+                    val note = notesViewModel.notesList.value.find { it.title == noteTitle }
+                    if (note != null) {
+                        NoteDetailPage(note = note)
+                    }
                 }
             }
 
@@ -94,5 +104,3 @@ fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = v
         }
     }
 }
-
-
