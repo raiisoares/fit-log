@@ -57,7 +57,7 @@ fun UserInfo(modifier: Modifier = Modifier) {
                 .background(Color.White, shape = RoundedCornerShape(12.dp)) // Fundo branco e bordas arredondadas
         ) {
             Image(
-                painter = painterResource(id = R.drawable.img_eduarda.jpg), // Nome da imagem
+                painter = painterResource(id = R.drawable.img_eduarda), // Nome da imagem
                 contentDescription = "Imagem de Maria Eduarda",
                 modifier = Modifier.fillMaxSize(), // Preenche o Box
                 contentScale = ContentScale.Crop // Para cortar a imagem se necessário

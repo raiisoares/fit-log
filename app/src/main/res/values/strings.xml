@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">fit-log</string>
     <string name="title_activity_maria_eduarda_info">Informações de Maria Eduarda</string>
+    <string name="note_details">Detalhes</string>
+    <string name="note_title">Título</string>
+    <string name="note_subject">Assunto</string>
+    <string name="note_content">Conteúdo</string>
+    <string name="note_creation_date">Criado em</string>
+    <string name="dashboard_title">Dashboard de notas</string>
+    <string name="delete_note">Excluir</string>
+    <string name="note_detail_page_title">Detalhes da Nota</string>
 </resources>

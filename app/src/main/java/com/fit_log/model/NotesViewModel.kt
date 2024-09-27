@@ -17,4 +17,8 @@ class NotesViewModel : ViewModel() {
             Notes(title = title, content = content, subject = subject, creationDate = currentDate)
         _notesList.value += newNote
     }
+
+    fun deleteNote(noteToDelete: Notes) {
+
+    }
 }
