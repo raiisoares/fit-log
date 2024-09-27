@@ -1,41 +1,20 @@
-package com.fit_log.pages
-
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-
 @Composable
-fun AddPage(onAddNote: (String, String, String) -> Unit) {
-    var title by remember { mutableStateOf("") }
-    var content by remember { mutableStateOf("") }
-    var subject by remember { mutableStateOf("") }
+fun NoteDetailPage(note: Notes) {
+    val titleText = stringResource(id = R.string.note_details)
+    val titleLabel = stringResource(id = R.string.note_title)
+    val subjectLabel = stringResource(id = R.string.note_subject)
+    val contentLabel = stringResource(id = R.string.note_content)
+    val creationDateLabel = stringResource(id = R.string.note_creation_date)
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Adicionar notas",
+            text = titleText,
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -44,47 +23,45 @@ fun AddPage(onAddNote: (String, String, String) -> Unit) {
             textAlign = TextAlign.Center
         )
 
-        Column(
-            modifier = Modifier.padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            TextField(
-                value = title,
-                onValueChange = { title = it },
-                label = { Text("Título") },
-                modifier = Modifier.fillMaxWidth()
-            )
+        OutlinedTextField(
+            value = note.title,
+            onValueChange = {},
+            label = { Text(titleLabel) },
+            readOnly = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        )
 
-            TextField(
-                value = content,
-                onValueChange = { content = it },
-                label = { Text("Conteúdo") },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .heightIn(min = 100.dp),
-                maxLines = 5,
-                singleLine = false
-            )
+        OutlinedTextField(
+            value = note.subject,
+            onValueChange = {},
+            label = { Text(subjectLabel) },
+            readOnly = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        )
 
-            TextField(
-                value = subject,
-                onValueChange = { subject = it },
-                label = { Text("Assunto") },
-                modifier = Modifier.fillMaxWidth()
-            )
+        OutlinedTextField(
+            value = note.content,
+            onValueChange = {},
+            label = { Text(contentLabel) },
+            readOnly = true,
+            maxLines = 5,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        )
 
-            Button(
-                onClick = {
-                    onAddNote(title, content, subject)
-                    title = ""
-                    content = ""
-                    subject = ""
-                },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Adicionar Nota")
-            }
-        }
+        OutlinedTextField(
+            value = note.creationDate,
+            onValueChange = {},
+            label = { Text(creationDateLabel) },
+            readOnly = true,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 8.dp)
+        )
     }
 }

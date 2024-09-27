@@ -1,19 +1,10 @@
-package com.fit_log.pages
-
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.fit_log.model.Notes
-
 @Composable
 fun NoteDetailPage(note: Notes) {
+    val noteTitleLabel = stringResource(id = R.string.note_title)
+    val subjectLabel = stringResource(id = R.string.note_subject)
+    val contentLabel = stringResource(id = R.string.note_content)
+    val creationDateLabel = stringResource(id = R.string.note_creation_date)
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -22,9 +13,9 @@ fun NoteDetailPage(note: Notes) {
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(text = note.title, fontSize = 24.sp)
-        Text(text = "Assunto: ${note.subject}", fontSize = 20.sp)
-        Text(text = "Conteúdo:", fontSize = 16.sp)
+        Text(text = "$subjectLabel: ${note.subject}", fontSize = 20.sp)
+        Text(text = "$contentLabel:", fontSize = 16.sp)
         Text(text = note.content, fontSize = 16.sp)
-        Text(text = "Criado em: ${note.creationDate}", fontSize = 14.sp)
+        Text(text = "$creationDateLabel: ${note.creationDate}", fontSize = 14.sp)
     }
 }

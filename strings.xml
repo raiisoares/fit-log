@@ -9,4 +9,12 @@
     <string name="user_age">21 anos</string>
     <string name="user_course">Ciência da Computação</string>
     <string name="user_university">UNICAP</string>
+    <string name="note_details">Detalhes</string>
+    <string name="note_title">Título</string>
+    <string name="note_subject">Assunto</string>
+    <string name="note_content">Conteúdo</string>
+    <string name="note_creation_date">Criado em</string>
+    <string name="dashboard_title">Dashboard de notas</string>
+    <string name="delete_note">Excluir</string>
+    <string name="note_detail_page_title">Detalhes da Nota</string>
 </resources>
