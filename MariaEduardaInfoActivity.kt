@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource // Importar para acessar strings
+import androidx.compose.ui.res.stringResource 
 import androidx.compose.ui.unit.dp
 import com.fit_log.ui.theme.FitlogTheme
 
@@ -44,7 +44,7 @@ fun UserInfo(modifier: Modifier = Modifier) {
     ) {
         // Título
         Text(
-            text = stringResource(id = R.string.title_activity_maria_eduarda_info), // Usando a string do XML
+            text = stringResource(id = R.string.title_activity_maria_eduarda_info), 
             style = MaterialTheme.typography.titleLarge,
             color = Color(0xFFBB4F9A),
             modifier = Modifier.padding(vertical = 16.dp)
@@ -55,7 +55,7 @@ fun UserInfo(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .size(120.dp) // Tamanho da imagem
                 .padding(16.dp)
-                .background(Color.White, shape = RoundedCornerShape(12.dp)) // Fundo branco e bordas arredondadas
+                .background(Color.White, shape = RoundedCornerShape(12.dp)) 
         ) {
             Image(
                 painter = painterResource(id = R.drawable.ic_launcher_background), // Nome da imagem
