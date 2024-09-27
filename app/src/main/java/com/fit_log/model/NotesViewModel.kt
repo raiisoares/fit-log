@@ -19,6 +19,6 @@ class NotesViewModel : ViewModel() {
     }
 
     fun deleteNote(noteToDelete: Notes) {
-
+        _notesList.value = _notesList.value.filter { it != noteToDelete }
     }
 }
