@@ -10,10 +10,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.fit_log.R
 import com.fit_log.model.Notes
 
 @Composable
@@ -26,7 +28,7 @@ fun NoteDetailPage(note: Notes) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Detalhes",
+            text = stringResource(R.string.note_detail_page_title),
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -38,7 +40,7 @@ fun NoteDetailPage(note: Notes) {
         OutlinedTextField(
             value = note.title,
             onValueChange = {},
-            label = { Text("Título") },
+            label = { Text(stringResource(R.string.note_title)) },
             readOnly = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -48,7 +50,7 @@ fun NoteDetailPage(note: Notes) {
         OutlinedTextField(
             value = note.subject,
             onValueChange = {},
-            label = { Text("Assunto") },
+            label = { Text(stringResource(R.string.note_subject)) },
             readOnly = true,
             modifier = Modifier
                 .fillMaxWidth()
@@ -58,7 +60,7 @@ fun NoteDetailPage(note: Notes) {
         OutlinedTextField(
             value = note.content,
             onValueChange = {},
-            label = { Text("Conteúdo") },
+            label = { Text(stringResource(R.string.note_content)) },
             readOnly = true,
             maxLines = 5,
             modifier = Modifier
@@ -69,7 +71,7 @@ fun NoteDetailPage(note: Notes) {
         OutlinedTextField(
             value = note.creationDate,
             onValueChange = {},
-            label = { Text("Criado em") },
+            label = { Text(stringResource(R.string.note_creation_date)) },
             readOnly = true,
             modifier = Modifier
                 .fillMaxWidth()

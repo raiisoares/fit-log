@@ -8,5 +8,10 @@
     <string name="note_creation_date">Criado em</string>
     <string name="dashboard_title">Dashboard de notas</string>
     <string name="delete_note">Excluir</string>
+    <string name="add_note">Adicionar Nota</string>
+    <string name="add_note_page_title">Adicionar Notas</string>
     <string name="note_detail_page_title">Detalhes da Nota</string>
+    <string name="add">Adicionar</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="about">Sobre</string>
 </resources>

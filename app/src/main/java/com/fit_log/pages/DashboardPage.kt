@@ -29,7 +29,7 @@ fun DashboardPage(
     navController: NavController,
     onDeleteNote: (Notes) -> Unit
 ) {
-    val dashboardTitle = stringResource(id = R.string.dashboard_title)
+    val dashboardTitle = stringResource(R.string.dashboard_title)
 
     Column {
         Text(

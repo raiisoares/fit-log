@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
@@ -24,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.fit_log.model.NavItem
 import com.fit_log.model.NotesViewModel
+import com.fit_log.model.Routes
 import com.fit_log.pages.AboutPage
 import com.fit_log.pages.AddPage
 import com.fit_log.pages.DashboardPage
@@ -32,9 +34,18 @@ import com.fit_log.pages.NoteDetailPage
 @Composable
 fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = viewModel()) {
     val navItemList = listOf(
-        NavItem("Add", ImageVector.vectorResource(R.drawable.ic_add_black_24dp)),
-        NavItem("Dashboard", ImageVector.vectorResource(R.drawable.ic_dashboard_black_24dp)),
-        NavItem("About", ImageVector.vectorResource(R.drawable.ic_info_black_24dp))
+        NavItem(
+            stringResource(R.string.add),
+            ImageVector.vectorResource(R.drawable.ic_add_black_24dp)
+        ),
+        NavItem(
+            stringResource(R.string.dashboard),
+            ImageVector.vectorResource(R.drawable.ic_dashboard_black_24dp)
+        ),
+        NavItem(
+            stringResource(R.string.about),
+            ImageVector.vectorResource(R.drawable.ic_info_black_24dp)
+        )
     )
 
     var selectedIndex by remember {
@@ -47,10 +58,10 @@ fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = v
         Column(modifier = Modifier.padding(innerPadding)) {
             NavHost(
                 navController = navController,
-                startDestination = "Dashboard",
+                startDestination = Routes.Dashboard.name,
                 modifier = Modifier.weight(1f)
             ) {
-                composable("Dashboard") {
+                composable(Routes.Dashboard.name) {
                     DashboardPage(
                         annotations = notesViewModel.notesList.value,
                         navController = navController,
@@ -60,14 +71,14 @@ fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = v
                     )
                 }
 
-                composable("Add") {
+                composable(Routes.Add.name) {
                     AddPage(onAddNote = { title, content, subject ->
                         notesViewModel.addNote(title, content, subject)
-                        navController.navigate("Dashboard")
+                        navController.navigate(Routes.Dashboard.name)
                     })
                 }
 
-                composable("About") {
+                composable(Routes.About.name) {
                     AboutPage()
                 }
 
@@ -88,9 +99,9 @@ fun MainScreen(modifier: Modifier = Modifier, notesViewModel: NotesViewModel = v
                             onClick = {
                                 selectedIndex = index
                                 val route = when (index) {
-                                    0 -> "Add"
-                                    1 -> "Dashboard"
-                                    else -> "About"
+                                    0 -> Routes.Add.name
+                                    1 -> Routes.Dashboard.name
+                                    else -> Routes.About.name
                                 }
                                 navController.navigate(route, navOptions = navOptions {
                                     launchSingleTop = true

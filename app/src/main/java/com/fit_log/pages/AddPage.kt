@@ -16,10 +16,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.fit_log.R
 
 @Composable
 fun AddPage(onAddNote: (String, String, String) -> Unit) {
@@ -35,7 +37,7 @@ fun AddPage(onAddNote: (String, String, String) -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Adicionar notas",
+            text = stringResource(R.string.add_note_page_title),
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -52,14 +54,14 @@ fun AddPage(onAddNote: (String, String, String) -> Unit) {
             TextField(
                 value = title,
                 onValueChange = { title = it },
-                label = { Text("Título") },
+                label = { Text(stringResource(R.string.note_title)) },
                 modifier = Modifier.fillMaxWidth()
             )
 
             TextField(
                 value = content,
                 onValueChange = { content = it },
-                label = { Text("Conteúdo") },
+                label = { Text(stringResource(R.string.note_content)) },
                 modifier = Modifier
                     .fillMaxWidth()
                     .heightIn(min = 100.dp),
@@ -70,7 +72,7 @@ fun AddPage(onAddNote: (String, String, String) -> Unit) {
             TextField(
                 value = subject,
                 onValueChange = { subject = it },
-                label = { Text("Assunto") },
+                label = { Text(stringResource(R.string.note_subject)) },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -83,7 +85,7 @@ fun AddPage(onAddNote: (String, String, String) -> Unit) {
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Adicionar Nota")
+                Text(stringResource(R.string.add_note))
             }
         }
     }
